@@ -6,11 +6,10 @@ gem [] gem;
 cloud [] cloud;
 
 int flrLvl; //Constant Floor Level
-//int score = 0;
-float g = 5000; //The world x position of the firs diamond, will increase by 5000 every time a diamond is found.
-float xmax=width-300; //Maximum distance the player has travelled in the world
+float g = 5000;              //The world x position of the firs diamond, will increase by 5000 every time a diamond is found.
+float xmax=width-300;        //Maximum distance the player has travelled in the world
 float screenMax = width-400; //The furtherst acroos the screen the character model can go
-boolean generate = false; //generate = tree, Enemy and Diamond generateration   punch = the character punches...
+boolean generate = false;    //generate = tree, Enemy and Diamond generateration   punch = the character punches...
 final static float gravity = 0.5;
 
 void createBackground() {
@@ -136,7 +135,7 @@ void draw() {
   textSize(50);
   fill(255, 255, 255);
   text("Score: "+player.score, 700, flrLvl+60);
-  text(str(player.x)+", "+str(player.xPos)+", "+str(xmax), 100, 100);            //This line displays the players 3 different x values, if you want to see them just remove the //
+  //text(str(player.x)+", "+str(player.xPos)+", "+str(xmax), 100, 100);            //This line displays the players 3 different x values, if you want to see them just remove the //
 }
 
 void keyPressed() {
