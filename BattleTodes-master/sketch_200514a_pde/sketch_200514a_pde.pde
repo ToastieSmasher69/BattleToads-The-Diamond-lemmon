@@ -12,23 +12,21 @@ float screenMax = width-400; //The furtherst acroos the screen the character mod
 boolean generate = false;    //generate = tree, Enemy and Diamond generateration   punch = the character punches...
 final static float gravity = 0.5;
 
-void createBackground() {
+void createBackground() {  //Called in draw(), creates the coloured background and randomly generates the trees and clouds
   background(0, 205, 255);
   fill(3, 150, 47); // green
   rect(0, flrLvl, width, height-flrLvl);
   if (generate == true) {
-    int temp1 = int(random(80));
-    if (temp1 == 1) {
+    if (int(random(80)) == 1) { // Random number out of 80 is selected every draw loop, there is 1/80 chance this will spawn a tree
       tree = (tree[])append(tree, new tree());
     }
-    int temp2 = int(random(100));
-    if (temp2 == 1) {
+    if (int(random(100)) == 1) { // Random number out of 100 is selected every draw loop, there is 1/100 chance this will spawn a tree
       cloud = (cloud[])append(cloud, new cloud());
     }
   }
 }
 
-void diamonds() {
+void diamonds() {   // Subprogram dedicated to the generation of diamonds and the detection of contact with player and point scoring -- BUG TO FIX --> diamonds dont generate if player is jumping at the start of game
   if (xmax == g) {
     print("gem created");
     gem = (gem[])append(gem, new gem());
@@ -36,7 +34,7 @@ void diamonds() {
     println(gem[0].x);
   }
   for (int i = 0; i<gem.length; i++) {
-    if (pointScore(player, gem[i]) == true) {  
+    if (pointScore(player, gem[i]) == true) {  // If statement checks the return value of pointScore boolean (line 64) 
       gem[i].touch = true;      
       println("scored");
       for (int j = 0; j<gem.length-1; j++) {
@@ -49,8 +47,8 @@ void diamonds() {
       player.score = player.score + 1;
     }
   }
-  for (int i = 0; i<gem.length; i++) {
-    if (gem[i].x <= -60) {                  //I couldnt put both if statements in one for loop as it would crash as soon as a gem was removed from an array
+  for (int i = 0; i<gem.length; i++) {    //  I couldnt put both if statements in one for loop as it would crash as soon as a gem was removed from an array, so two for loops were needed
+    if (gem[i].x <= -60) {        // If gem leaves the screen it will imediately be removed from the end of the array
       println("missed one");
       for (int j = 0; j<gem.length-1; j++) {
         gem[j].x = gem[j+1].x;
@@ -135,7 +133,7 @@ void draw() {
   textSize(50);
   fill(255, 255, 255);
   text("Score: "+player.score, 700, flrLvl+60);
-  //text(str(player.x)+", "+str(player.xPos)+", "+str(xmax), 100, 100);            //This line displays the players 3 different x values, if you want to see them just remove the //
+  text(str(player.x)+", "+str(player.xPos)+", "+str(xmax), 100, 100);            //This line displays the players 3 different x values, if you want to see them just remove the //
 }
 
 void keyPressed() {

@@ -29,45 +29,48 @@ class player {
     }
   }
   void show() {
-    if (player.xSpeed == 0 && punch == false && faceBack != true) {
+    if (xSpeed == 0 && punch == false && faceBack != true) {
       image(playerImg[8], x, y);
     }
-    if (player.xSpeed == 0 && punch == false && faceBack == true) {
+    if (xSpeed == 0 && punch == false && faceBack == true) {
       image(playerImg[9], x+25, y);
     }
-    if (player.xSpeed > 0 && punch == false) {
+    if (xSpeed > 0 && punch == false) {
       image(playerImg[int(frameCount/10)%4], x, y);
     }
-    if (player.xSpeed < 0 && punch == false) {
+    if (xSpeed < 0 && punch == false) {
       image(playerImg[4+int(frameCount/10)%4], x, y);
     }
     if (punch == true) {
-      if (player.xSpeed == 0 && faceBack != true || player.xSpeed > 0) {
+      if (xSpeed == 0 && faceBack != true || xSpeed > 0) {
         image(playerImg[10], x, y);
         playerImg[10].resize(70, 60);
       }
-      if (player.xSpeed < 0) {
+      if (xSpeed < 0) {
         image(playerImg[11], x-25, y); // sorry about all the if statements sir, tested as efficient as I could but this is what I could do to make all the images line up
         playerImg[11].resize(70, 60);
       }
-      if (player.xSpeed == 0 && faceBack == true) {
+      if (xSpeed == 0 && faceBack == true) {
         image(playerImg[11], x, y);
         playerImg[11].resize(70, 60);
       }
     }
 
-    if (player.lives==3) {
+    if (lives==3) {   //           
       image(heartImg[0], liveX, liveY);
     }
-    if (player.lives==2) {
+    if (lives==2) {
       image(heartImg[1], liveX, liveY);
     }
-    if (player.lives==1) {
+    if (lives==1) {
       image(heartImg[2], liveX, liveY);
     }    
-    if (player.lives==0) {
+    if (lives==0) {
       image(heartImg[3], liveX, liveY);
     }
+    
+    //for (int i = )
+    
   }
   void move() {
     if (x <= width-400) {
